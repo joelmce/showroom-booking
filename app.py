@@ -41,12 +41,7 @@ def handle_login():
 
 @app.route("/admin")
 @login_required
-def admin(user):
-    user_perms = session.get('admin', '')
-    print(user_perms)
-    if user_perms:
-        return "Authenticated"
-    else:
-        return redirect("/")
+def admin():
+    return "Authenticated"
 
 app.run(debug=True)
