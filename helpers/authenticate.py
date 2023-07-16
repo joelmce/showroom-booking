@@ -9,7 +9,7 @@ def login_required(f):
     def func(*args, **kwargs):
         user_perm = session['admin']
         if user_perm:
-            return f(user_perm, *args, **kwargs)
+            return f(*args, **kwargs)
         return abort(401)
      return func     
 
