@@ -1,3 +1,18 @@
+from functools import wraps
+from flask import abort, session
+
+def login_required(f):
+    '''A class decorator that checks if the user is an admin, which returns admin permission if 
+    true
+    '''
+    @wraps(f)
+    def func(*args, **kwargs):
+        user_perm = session['admin']
+        if user_perm:
+            return f(user_perm, *args, **kwargs)
+        return abort(401)
+     return func     
+
 def register_user() -> bool:
     '''Registers the user
 
