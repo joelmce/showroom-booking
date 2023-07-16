@@ -7,7 +7,7 @@ def login_required(f):
     '''
     @wraps(f)
     def func(*args, **kwargs):
-        user_perm = session['admin']
+        user_perm = session.get('admin', '')
         if user_perm:
             return f(*args, **kwargs)
         return abort(401)
