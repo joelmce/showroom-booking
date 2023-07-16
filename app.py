@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, request, flash, redirect
 from models.user import get_all, User, get_user
-from helpers.authenticate import is_admin
+from helpers.authenticate import is_admin, login_required
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
 import os
@@ -40,7 +40,8 @@ def handle_login():
     return redirect("/")   
 
 @app.route("/admin")
-def admin():
+@login_required
+def admin(user):
     user_perms = session.get('admin', '')
     print(user_perms)
     if user_perms:
