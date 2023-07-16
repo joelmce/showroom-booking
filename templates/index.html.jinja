@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HNCV Showroom - Book</title>  
+    <link rel="stylesheet" href="/static/stylesheets/main.css"/>
+    {% block css %}
+        
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        {% block navbar %}
+        <header>
+            <nav>
+                <h2 class="branding">
+                    <a href="/">HNCV Showroom</a>
+                </h2>
+
+                <div class="login">
+                    {% if user %}
+                    <a>{{user}}</a>
+                    {% else %}
+                    <a class="button button-primary" href="/login">Login</a>
+                    {% endif %}
+                </div>
+
+            </nav>
+        </header>
+        {% endblock %}
+
+        {% block main %}
+        
+        {% endblock%}
+    </div>  
+</body>
+</html>

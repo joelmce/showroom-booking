@@ -1,0 +1,22 @@
+{% extends "index.html.jinja" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/stylesheets/login.css">
+{% endblock %}
+
+{% block main %}
+<main>
+    <section class="login">
+        <form action="/login/success" method="POST">
+            <label for="username">Username</label>
+            <input type="text" name="username">
+
+            <label for="password">Password</label>
+            <input type="password" name="password">
+
+            <input type="submit" name="submit" value="Login" class="button button-primary">
+        </form>
+    </section>
+</main>
+{% endblock %}
+

@@ -31,10 +31,13 @@ def edit_user(id, change, **columns):
         session.query(User).filter(id == id).update({col: change})
         session.commit()
 
-def get_user(id):
-    user = session.query(User).get(id)
+def get_user(name):
+    user = session.query(User).filter_by(name=name).first()
     return user
 
 def get_all():
     results = session.query(User)
     return results
+
+
+    

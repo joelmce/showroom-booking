@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "Maven Pro", sans-serif;
+}
+
+:root {
+  --main-colour: #0496ff;
+  --accent-colour: #ffbc42;
+  --text-color: #eff6ee;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 900px;
+}
+
+header nav {
+  margin-top: 50px;
+  padding: 10px 30px;
+  border-radius: 10px;
+
+  background-color: var(--main-colour);
+  color: var(--text-color);
+}
+
+nav h2 {
+  display: inline;
+}
+
+main {
+  margin-top: 100px;
+}
+
+.button {
+  padding: 5px 10px;
+  width: fit-content;
+  border-radius: 5px;
+}
+
+.button-primary {
+  background-color: var(--accent-colour);
+  color: var(--text-color);
+  border: 2px var(--accent-colour) solid;
+  transition: all 0.3s;
+}
+
+.button-primary:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-secondary {
+  background-color: transparent;
+  border: 2px var(--accent-colour) solid;
+  transition: all 0.3s;
+}
+
+.button-secondary:hover {
+  background-color: var(--accent-colour);
+  cursor: pointer;
+}
+
+nav .login {
+  float: right;
+}
