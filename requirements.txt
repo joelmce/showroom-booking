@@ -2,5 +2,4 @@ Flask
 Gunicorn
 sqlalchemy
 psycopg2
-os
 bcrypt
