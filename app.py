@@ -44,4 +44,4 @@ def handle_login():
 def admin():
     return "Authenticated"
 
-app.run(debug=True)
+app.run(debug=True, port=5000)
