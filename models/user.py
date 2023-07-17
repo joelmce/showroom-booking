@@ -1,22 +1,6 @@
 from flask import flash
-from sqlalchemy import create_engine, Column, Integer, String, Boolean, select
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import IntegrityError
-
-Base = declarative_base()
-engine = create_engine('postgresql:///selectioncentre')
-Session = sessionmaker(bind=engine)
-session = Session()
-
-class User(Base):
-    __tablename__ = 'users'
-
-    user_id = Column(Integer, primary_key=True)
-    name = Column(String)
-    email = Column(String)
-    password = Column(String)
-    admin = Column(Boolean) 
+from models.schema import User, session
 
 def add_user(name, email, password, admin = False):
     try:

@@ -1,0 +1,19 @@
+{% extends "index.html.jinja" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/stylesheets/user.css">
+{% endblock %}
+
+{% block main %}
+<main>
+    <section class="user">
+        {{ user.name }}
+    </section>
+    <section class="user-bookings">
+        {% for booking in bookings %}
+            {{booking.booking_id}} - {{ booking.date}}
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}
+

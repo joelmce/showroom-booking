@@ -2,8 +2,7 @@ from functools import wraps
 from flask import abort, session
 
 def login_required(f):
-    '''A class decorator that checks if the user is an admin, which returns admin permission if 
-    true
+    '''A class decorator that checks if the user is an admin, which returns the wrapped function if true
     '''
     @wraps(f)
     def func(*args, **kwargs):

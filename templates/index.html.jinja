@@ -20,7 +20,8 @@
 
                 <div class="login">
                     {% if user %}
-                    <a href="/logout">{{user.name}}</a>
+                    <a href="/logout">Logout</a>
+                    <a href="/user/{{user.user_id}}">{{user.name}}</a>
                     {% if user.admin == True%}
                         <a href="/admin">Admin</a>
                     {% endif %}

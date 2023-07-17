@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, request, flash, redirect
 from models.user import get_all, get_user, remove_user, add_user
+from models.booking import get_bookings_by_user
 from helpers.authenticate import is_admin, login_required
 from sqlalchemy.orm.exc import NoResultFound
 import bcrypt
@@ -45,6 +46,12 @@ def handle_login():
 def logout():
     session.clear()
     return redirect("/login")
+
+@app.route("/user/<id>")
+def user(id):
+    bookings = get_bookings_by_user(id)
+    user = get_user(id)
+    return render_template("user.html.jinja", user=user, bookings=bookings)
 
 @app.route("/admin")
 @login_required
