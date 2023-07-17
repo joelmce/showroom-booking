@@ -1,0 +1,31 @@
+{% extends "index.html.jinja" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/stylesheets/new_user.css">
+{% endblock %}
+
+{% block main %}
+<main>
+    <section class="new_user">
+        <form action="/user/new" method="POST">
+            <label for="username">Username</label>
+            <input type="text" name="username">
+
+            <label for="email">Email</label>
+            <input type="email" name="email">
+
+            <label for="password">Password</label>
+            <input type="password" name="password">
+
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" name="confirmpassword">
+
+            <label for="admin">Admin?</label>
+            <input type="checkbox" id="admin" name="admin" value="True">
+
+            <input type="submit" name="submit" value="Add" class="button button-primary">
+        </form>
+    </section>
+</main>
+{% endblock %}
+
