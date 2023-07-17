@@ -10,9 +10,11 @@ app.secret_key = "Magically"
 
 @app.route("/")
 def index():
-    results = get_all()
-    user_session = session['user']
-    return render_template("index.html.jinja", results=results, user=user_session)
+    user = ""
+    if session.get("user"):
+        user_session = session['user'] | None
+        user = get_user(user_session)
+    return render_template("index.html.jinja", user=user)
 
 @app.route("/login")
 def login():
@@ -37,7 +39,12 @@ def handle_login():
     except NoResultFound:
         flash("User does not exist")
     print(session['admin'])    
-    return redirect("/")   
+    return redirect("/")  
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/login")
 
 @app.route("/admin")
 @login_required
