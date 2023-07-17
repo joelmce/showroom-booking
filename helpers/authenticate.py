@@ -11,7 +11,7 @@ def login_required(f):
         if user_perm:
             return f(*args, **kwargs)
         return abort(401)
-     return func     
+    return func      
 
 def register_user() -> bool:
     '''Registers the user
