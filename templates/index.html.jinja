@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HNCV Showroom - Book</title>  
     <link rel="stylesheet" href="/static/stylesheets/main.css"/>
+    <!-- Plugin CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/themes/light.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/themes/dark.min.css" rel="stylesheet">
+    <!-- Plugin JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js" defer></script>
+    <script src="/static/js/calendar.js" defer></script>
     {% block css %}
         
     {% endblock %}
@@ -35,7 +42,8 @@
         {% endblock %}
 
         {% block main %}
-        
+        <div id="calendar"></div>
+        <button id="book" class="button button-secondary">Book</button>
         {% endblock%}
     </div>  
 </body>

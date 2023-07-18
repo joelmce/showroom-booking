@@ -71,3 +71,22 @@ main {
 nav .login {
   float: right;
 }
+
+.times-container {
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.time {
+  padding: 10px;
+  border: 1px white solid;
+  border-radius: 5px;
+}
+
+.time:hover {
+  background-color: #eff6ee;
+  color: navy;
+  cursor: pointer;
+}

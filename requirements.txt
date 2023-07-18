@@ -3,3 +3,6 @@ Gunicorn
 sqlalchemy
 psycopg2
 bcrypt
+requests
+sendgrid
+python-dotenv

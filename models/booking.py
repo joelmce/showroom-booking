@@ -2,8 +2,9 @@ from models.schema import User, Booking, session
 
 def create_booking(owner_id, time):
     u = User(user_id=owner_id)
-    b = Booking(owner_Id=u.user_id, date=time)
+    b = Booking(owner_id=u.user_id, date=time)
     session.add(b)
+    session.commit()
 
 def delete_booking(id):
     record = Booking.query.filter_by(Booking.booking_id == id).one()

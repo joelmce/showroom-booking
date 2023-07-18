@@ -1,10 +1,13 @@
 from flask import Flask, render_template, session, request, flash, redirect
 from models.user import get_all, get_user, remove_user, add_user
-from models.booking import get_bookings_by_user
+from models.booking import get_bookings_by_user, create_booking
 from helpers.authenticate import is_admin, login_required
 from sqlalchemy.orm.exc import NoResultFound
+from datetime import datetime
+from helpers.emails import send_email
 import bcrypt
 import os
+import requests
 
 app = Flask(__name__)
 app.secret_key = "Magically"
@@ -80,5 +83,15 @@ def new_user_action():
 
     add_user(name, email, password, admin)    
     return redirect("/admin")
+
+@app.route("/book", methods=['POST'])
+def new_booking():
+    owner_id = get_user(session.get('user',''))
+    booking = request.get_json()
+    dates = str(booking['date'])
+    create_booking(owner_id.user_id, dates)
+    send_email()
+    return redirect('/')
+
 
 app.run(debug=True, port=5000)
