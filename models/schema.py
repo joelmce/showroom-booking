@@ -6,8 +6,11 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
+production = os.environ['PRODUCTION_DB_URL']
+local = os.environ['LOCAL_DB_URL']
+
 Base = declarative_base()
-engine = create_engine(os.getenv('PRODUCTION_DB_URL'))
+engine = create_engine(production)
 
 class User(Base):
     __tablename__ = 'users'

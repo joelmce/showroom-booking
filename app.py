@@ -11,7 +11,6 @@ app.secret_key = "Magically"
 @app.route("/")
 def index():
     user = ""
-    start()
     if session.get("user"):
         user_session = session['user']
         user = get_user(user_session)
