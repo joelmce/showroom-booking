@@ -1,13 +1,9 @@
 from flask import Flask, render_template, session, request, flash, redirect
 from models.user import get_all, get_user, remove_user, add_user
 from models.booking import get_bookings_by_user, create_booking
-from helpers.authenticate import is_admin, login_required
+from helpers.authenticate import login_required
 from sqlalchemy.orm.exc import NoResultFound
-from datetime import datetime
 from helpers.emails import send_email
-import bcrypt
-import os
-import requests
 
 app = Flask(__name__)
 app.secret_key = "Magically"
@@ -15,9 +11,12 @@ app.secret_key = "Magically"
 @app.route("/")
 def index():
     user = ""
+    start()
     if session.get("user"):
         user_session = session['user']
         user = get_user(user_session)
+    else:
+        return redirect("/login")    
     return render_template("index.html.jinja", user=user)
 
 @app.route("/login")

@@ -1,11 +1,10 @@
-{% extends "index.html.jinja" %}
+<link rel="stylesheet" href="/static/stylesheets/login.css">
 
-{% block css %}
-    <link rel="stylesheet" href="/static/stylesheets/login.css">
-{% endblock %}
-
-{% block main %}
 <main>
+    <div class="title">
+        <h1>Please login. </h1>
+        <h4>To book, login using the account given to your representative.</h4>
+    </div>
     <section class="login">
         <form action="/login/success" method="POST">
             <label for="username">Username</label>
@@ -18,5 +17,4 @@
         </form>
     </section>
 </main>
-{% endblock %}
 
