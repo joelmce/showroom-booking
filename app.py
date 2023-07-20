@@ -91,5 +91,3 @@ def new_booking():
     send_email()
     return redirect('/')
 
-
-app.run(debug=True)
