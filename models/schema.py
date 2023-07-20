@@ -2,11 +2,9 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean,DateTime,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
-from dotenv import load_dotenv
 import os
-load_dotenv()
 
-production = os.environ['PRODUCTION_DB_URL']
+production = os.environ.get('PRODUCTION_DB_URL')
 local = os.environ['LOCAL_DB_URL']
 
 Base = declarative_base()
