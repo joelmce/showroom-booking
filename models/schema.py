@@ -2,8 +2,12 @@ from sqlalchemy import create_engine, Column, Integer, String, Boolean,DateTime,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
 Base = declarative_base()
-engine = create_engine('postgresql:///selectioncentre_9sz9')
+engine = create_engine(os.getenv('PRODUCTION_DB_URL'))
 
 class User(Base):
     __tablename__ = 'users'
