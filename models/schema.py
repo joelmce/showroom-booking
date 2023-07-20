@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
 Base = declarative_base()
-engine = create_engine('postgresql:///selectioncentre')
+engine = create_engine('postgresql:///selectioncentre_9sz9')
 
 class User(Base):
     __tablename__ = 'users'
