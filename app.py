@@ -116,5 +116,3 @@ def new_booking():
     combined = dates + " " + time
     create_booking(owner_id.user_id, combined)
     return {'response': "200"}
-
-app.run(debug=True)

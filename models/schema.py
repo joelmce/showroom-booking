@@ -4,10 +4,10 @@ from sqlalchemy.orm import sessionmaker, relationship
 
 import os
 
-production = os.environ.get('postgresql:///selectioncentre')
+production = os.environ.get('PRODUCTION_DB_URL')
 
 Base = declarative_base()
-engine = create_engine('postgresql:///selectioncentre')
+engine = create_engine(production)
 
 class User(Base):
     __tablename__ = 'users'
