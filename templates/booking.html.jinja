@@ -7,8 +7,14 @@
 <main>
     <section class="manage-users">
         <h1>Booking #{{ booking.booking_id }} with {{ name }}.</h1>
+        <h4>Comments: </h4>
+        {% if booking.comments %}
+            {{ booking.comments }}
+        {% else %}
+            There are no comments on this booking.
+        {% endif %}
         <form action="/booking/{{booking.booking_id}}/comments/add" method="POST">
-            <input type="text" name="comment"/>
+            <input type="text" name="comments"/>
             <input type="submit" value="Add Comment"/>
         </form>
        

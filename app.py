@@ -66,7 +66,7 @@ def delete_booking(id):
 @login_required
 def view_booking(id):
     booking = get_booking(id)
-    name = get_booking_owner(id)
+    name = get_booking_owner(1)
     return render_template("booking.html.jinja", booking=booking, name=name)
 
 @app.route("/booking/<id>/comments/add", methods=['POST'])

@@ -1,6 +1,7 @@
 from models.schema import User, Booking, session
 from sqlalchemy.exc import IntegrityError
 from flask import flash
+from helpers.emails import send_email
 
 booking_info = {}
 
@@ -21,9 +22,11 @@ def create_booking(owner_id, time):
         book = Booking(owner_id=user.user_id, date=time) 
 
         """Create the booking object so we can access it when email is being sent"""
-        booking_info['id'] = book.booking_id
-        booking_info['to'] = user.email
-        booking_info['name'] = user.name
+        # booking_info['id'] = book.booking_id
+        # booking_info['to'] = user.email
+        # booking_info['name'] = user.name
+
+        send_email()
 
         session.add(book)
         session.commit()
@@ -73,8 +76,7 @@ def get_booking_owner(id):
     Returns:
         name: (User)
     """
-    name = session.query(User).join(Booking, User.user_id).filter(Booking.owner_id==id)
-    
+    name = session.query(Booking).filter_by(owner_id=id).first()
     return name
 
 def edit_booking(id, column, change):
@@ -88,7 +90,7 @@ def edit_booking(id, column, change):
         Raises IntegrityError
     """
     try:
-        session.query(Booking).filter(id == id).update({column: change})
+        session.query(Booking).filter_by(booking_id = id).update({column: change})
         session.commit()
     except IntegrityError:
         session.rollback()

@@ -14,12 +14,14 @@ def login_required(f):
         return abort(401)
     return func      
 
-def hashpassword(password):
+def hashpassword(p):
     """Hash a password
     Returns:
         An encrypted password
     """
-    return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    salt = bcrypt.gensalt()
+    password = bcrypt.hashpw(p.encode, salt)
+    return password
 
 def checkpassword(user, entered_password):
     """Compare two passwords from the name and the password they entered
@@ -27,7 +29,8 @@ def checkpassword(user, entered_password):
     Returns:
         password_check: (Bool) Result of comparison
     """
-    password_check = bcrypt.checkpw(entered_password.encode(), user.password.encode())
+    stored_pass = user.password
+    password_check = bcrypt.checkpw(entered_password.encode(), stored_pass)
     return password_check
 
 def login_user(fetched_user, password):

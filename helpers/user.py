@@ -1,7 +1,6 @@
 from flask import flash
 from sqlalchemy.exc import IntegrityError
 from models.schema import User, session
-from helpers.authenticate import hashpassword
 
 def add_user(name, email, password, admin = False):
     """Adds the user to the User table
@@ -17,8 +16,8 @@ def add_user(name, email, password, admin = False):
     Raises IntegrityError
     """
     try:
-        hashed_password = hashpassword(password)
-        user = User(name = name, email = email, password = hashed_password, admin = admin)
+        #hashed_password = hashpassword(password)
+        user = User(name = name, email = email, password = password, admin = admin)
         session.add(user)
         session.commit()
     except IntegrityError:
