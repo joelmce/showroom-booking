@@ -29,6 +29,10 @@ def get_user(name):
     user = session.query(User).filter_by(name=name).first()
     return user
 
+def get_user_by_id(id):
+    user = session.query(User).filter_by(user_id=id).first()
+    return user
+
 def get_all():
     results = session.query(User)
     return results

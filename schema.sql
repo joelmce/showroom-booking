@@ -15,5 +15,5 @@ CREATE TABLE bookings (
             REFERENCES users(user_id)
 );
 
-INSERT INTO users (name, email, password) VALUES ('Joel', 'joelanthony.mac@gmail.com', 'TestPassword123');
+INSERT INTO users (name, email, password) VALUES ('Joel', 'joelanthony.mac@gmail.com', 'TestPassword123', True);
 INSERT INTO bookings (owner_id, date) VALUES (1, '2001-09-28 03:00:00');

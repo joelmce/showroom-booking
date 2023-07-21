@@ -1,6 +1,6 @@
-from flask import Flask, render_template, session, request, flash, redirect
-from models.user import get_all, get_user, remove_user, add_user
-from models.booking import get_bookings_by_user, create_booking
+from flask import Flask, render_template, session, request, flash, redirect, get_flashed_messages
+from helpers.user import get_all, get_user, remove_user, add_user, get_user_by_id
+from helpers.booking import get_bookings_by_user, create_booking, get_all_bookings, remove_booking
 from helpers.authenticate import login_required
 from sqlalchemy.orm.exc import NoResultFound
 from helpers.emails import send_email
@@ -51,20 +51,27 @@ def logout():
 @app.route("/user/<id>")
 def user(id):
     bookings = get_bookings_by_user(id)
-    user = get_user(id)
+    user = get_user_by_id(id)
     return render_template("user.html.jinja", user=user, bookings=bookings)
 
 @app.route("/admin")
 @login_required
 def admin():
     all_users = get_all()
-    return render_template("admin.html.jinja", users=all_users)
+    all_bookings = get_all_bookings()
+    return render_template("admin.html.jinja", users=all_users, bookings=all_bookings)
 
 @app.route("/user/delete/<id>")
 @login_required
 def delete_user(id):
     remove_user(id)
     return redirect("/admin")
+
+@app.route('/booking/delete/<id>')
+@login_required
+def delete_booking(id):
+    remove_booking(id)
+    return redirect('/admin')
 
 @app.route('/user/new')
 @login_required
@@ -87,7 +94,10 @@ def new_booking():
     owner_id = get_user(session.get('user',''))
     booking = request.get_json()
     dates = str(booking['date'])
-    create_booking(owner_id.user_id, dates)
-    send_email()
-    return redirect('/')
+    time = str(booking['time'])
+    combined = dates + " " + time
+    flash('Test')
+    create_booking(owner_id.user_id, combined)
+    return {'response': "200"}
 
+app.run(debug=True)

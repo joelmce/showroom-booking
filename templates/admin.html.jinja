@@ -12,6 +12,7 @@
     {% endfor %}
     </ul>
     <section class="manage-users">
+        <h1>Users.</h1>
         <a href="/user/new">Add User</a>
         <ul>
         {% for user in users %}
@@ -23,9 +24,25 @@
                 {% if user.admin %}
                 (Admin)
                 {% endif %}
-                <a class="delete-user" href="/user/delete/{{user.user_id}}">Delete</a>
+                <a class="delete-button" href="/user/delete/{{user.user_id}}">Delete</a>
             </li>
         {% endfor %}
+        </ul>
+    </section>
+    <section class="manage-bookings">
+        <h1>Bookings.</h1>
+        <ul class="bookings">
+        {% for booking in bookings %}
+            <li class="booking">
+                <div class="booking-owner">
+                    {{ booking.owner_id }}
+                </div>
+                <p class="booking-time">Date: {{ booking.date }}</p>
+                <div class="booking-controls">
+                    <a class="delete-button" href="/booking/delete/{{booking.booking_id}}">Delete</a>
+                </div>
+            </li>
+        {% endfor %} 
         </ul>
     </section>
     {% endwith %}

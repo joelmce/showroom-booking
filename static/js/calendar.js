@@ -30,22 +30,30 @@ const options = {
   },
 };
 
+const calendar = new VanillaCalendar("#calendar", options);
+calendar.init();
+
 const nine = document.getElementById("morning");
 const one = document.getElementById("afternoon");
 const bookButton = document.getElementById("book");
+let selectedTime;
+
+nine.addEventListener("click", function () {
+  selectedTime = nine.textContent;
+});
+one.addEventListener("click", function () {
+  selectedTime = one.textContent;
+});
 
 bookButton.addEventListener("click", function () {
   fetch("/book", {
     method: "POST",
     body: JSON.stringify({
       date: _date,
-      time: "9:30am",
+      time: selectedTime,
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
   }).then((response) => response.json());
 });
-
-const calendar = new VanillaCalendar("#calendar", options);
-calendar.init();

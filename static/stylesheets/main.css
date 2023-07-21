@@ -3,12 +3,7 @@
 * {
   box-sizing: border-box;
   font-family: "Maven Pro", sans-serif;
-}
-
-:root {
-  --main-colour: #0496ff;
-  --accent-colour: #ffbc42;
-  --text-color: #eff6ee;
+  text-decoration: none;
 }
 
 body {
@@ -26,9 +21,10 @@ header nav {
   margin-top: 50px;
   padding: 10px 30px;
   border-radius: 10px;
+  border: 2px black solid;
 
-  background-color: var(--main-colour);
-  color: var(--text-color);
+  background-color: transparent;
+  color: purple;
 }
 
 nav h2 {
@@ -68,8 +64,18 @@ main {
   cursor: pointer;
 }
 
-nav .login {
+nav .user-controls {
   float: right;
+}
+
+.user-controls .nav-item {
+  margin: 0 10px;
+}
+
+.user-controls .nav-item:hover {
+  background-color: lightgray;
+  padding: 5px;
+  margin: 5px;
 }
 
 .times-container {
@@ -89,4 +95,21 @@ nav .login {
   background-color: #eff6ee;
   color: navy;
   cursor: pointer;
+}
+
+.book-button {
+  margin-top: 10px;
+  padding: 20px;
+}
+
+.calendar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  flex-direction: column;
+}
+
+.booking-controls {
+  float: right;
 }

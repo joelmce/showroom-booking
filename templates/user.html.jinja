@@ -2,17 +2,25 @@
 
 {% block css %}
     <link rel="stylesheet" href="/static/stylesheets/user.css">
+    <link rel="stylesheet" href="/static/stylesheets/admin.css">
 {% endblock %}
 
 {% block main %}
 <main>
-    <section class="user">
-        {{ user.name }}
-    </section>
+    <h1>Hello, {{ user.name }}</h1>
+    <h3>Here are your bookings.</h3>
     <section class="user-bookings">
+    <ul class="bookings">
         {% for booking in bookings %}
-            {{booking.booking_id}} - {{ booking.date}}
+        <li class="booking">
+        <p>Reference: {{ booking.booking_id }} </p>
+            {{ booking.date}}
+        <div class="booking-controls">
+            <a class="delete-button" href="/booking/delete/{{booking.booking_id}}">Delete</a>
+        </div>    
+        </li>
         {% endfor %}
+    </ul>
     </section>
 </main>
 {% endblock %}

@@ -1,0 +1,42 @@
+.bookings {
+  padding: 10px;
+  list-style-type: none;
+}
+
+.manage-bookings {
+  margin-top: 30px;
+}
+
+.booking {
+  background-color: whitesmoke;
+  margin: 20px 0;
+  padding: 30px 40px;
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+}
+
+.booking-owner {
+  display: inline;
+  margin: 0 10px;
+  text-align: left;
+}
+
+.owner_id {
+  padding: 20px;
+}
+
+.booking-controls {
+  text-align: right;
+}
+
+.delete-button {
+  padding: 10px;
+  background-color: crimson;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 0;
+}

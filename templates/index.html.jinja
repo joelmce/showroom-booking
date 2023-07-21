@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,25 +26,28 @@
                     <a href="/">HNCV Showroom</a>
                 </h2>
 
-                <div class="login">
+                <div class="user-controls">
                     {% if user %}
-                    <a href="/logout">Logout</a>
-                    <a href="/user/{{user.user_id}}">{{user.name}}</a>
+                    <a href="/logout" class="nav-item">Logout</a>
+                    <a href="/user/{{user.user_id}}" class="nav-item">{{user.name}}</a>
                     {% if user.admin == True%}
-                        <a href="/admin">Admin</a>
+                        <a href="/admin" class="nav-item">Admin</a>
                     {% endif %}
                     {% else %}
-                    <a class="button button-primary" href="/login">Login</a>
+                    <a class="button button-primary" href="/login" class="nav-item">Login</a>
                     {% endif %}
                 </div>
 
             </nav>
         </header>
         {% endblock %}
-
+        {% include 'includes/messages.html.jinja'%}
         {% block main %}
-        <div id="calendar"></div>
-        <button id="book" class="button button-secondary">Book</button>
+        <section class="calendar-wrapper">
+            <div id="calendar"></div>
+            <button id="book" class="book-button button button-secondary">Book</button>
+        </section>
+        
         {% endblock%}
     </div>  
 </body>

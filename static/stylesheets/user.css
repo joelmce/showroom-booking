@@ -1,0 +1,41 @@
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: auto;
+}
+
+main section {
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 30px;
+  width: fit-content;
+}
+
+section input,
+label {
+  margin: 10px;
+  align-self: center;
+}
+
+input {
+  padding: 10px;
+}
+
+input[type="submit"] {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  border: 0;
+}
+
+.title {
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.title h4 {
+  color: gray;
+}

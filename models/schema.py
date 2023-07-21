@@ -4,10 +4,10 @@ from sqlalchemy.orm import sessionmaker, relationship
 
 import os
 
-production = os.environ.get('PRODUCTION_DB_URL')
+production = os.environ.get('postgresql:///selectioncentre')
 
 Base = declarative_base()
-engine = create_engine(production)
+engine = create_engine('postgresql:///selectioncentre')
 
 class User(Base):
     __tablename__ = 'users'
@@ -26,7 +26,7 @@ class Booking(Base):
     booking_id = Column(Integer, primary_key=True)
     owner_id = Column(Integer, ForeignKey('users.user_id'))
     date = Column(DateTime)
-
+    
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
