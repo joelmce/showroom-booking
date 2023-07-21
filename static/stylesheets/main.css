@@ -85,7 +85,8 @@ nav .user-controls {
 
 .time {
   padding: 10px;
-  border: 1px white solid;
+  border: 1px purple solid;
+  color: purple;
   border-radius: 5px;
 }
 
