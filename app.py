@@ -1,8 +1,8 @@
 from flask import Flask, render_template, session, request, flash, redirect, get_flashed_messages
-from helpers.user import get_all, get_user, remove_user, add_user, get_user_by_id
-from helpers.booking import get_bookings_by_user, create_booking, get_all_bookings, remove_booking
-from helpers.authenticate import login_required
-from sqlalchemy.orm.exc import NoResultFound
+from helpers.user import get_all, get_user, remove_user, add_user, get_user_by_id, edit_user
+from helpers.booking import get_bookings_by_user, get_booking_owner, create_booking, get_all_bookings, remove_booking, get_booking, edit_booking
+from helpers.authenticate import login_required, checkpassword, hashpassword, login_user
+
 from helpers.emails import send_email
 
 app = Flask(__name__)
@@ -20,28 +20,17 @@ def index():
 
 @app.route("/login")
 def login():
+    if session.get("user"):
+        return redirect("/")
     return render_template("login.html.jinja")
 
 @app.route('/login/success', methods=['POST'])
-def handle_login():
+def login_success():
     name = request.form.get('username')
     pw = request.form.get('password')
-    fetched_user = get_user(name)
-    print(fetched_user.name)
+    login_user(get_user(name), pw)
+    return redirect("/")       
 
-    try:
-        if fetched_user is not None:
-            # password_check = bcrypt.checkpw(pw.encode(), fetched_user.password.encode())
-            if pw == fetched_user.password:
-                session['user'] = fetched_user.name
-                session['admin'] = fetched_user.admin
-                return redirect("/")
-        else:
-            print(f"No fetched user found. Returned: {fetched_user}")    
-    except NoResultFound:
-        flash("User does not exist")
-    print(session['admin'])    
-    return redirect("/")  
 
 @app.route("/logout")
 def logout():
@@ -73,6 +62,35 @@ def delete_booking(id):
     remove_booking(id)
     return redirect('/admin')
 
+@app.route("/booking/<id>")
+@login_required
+def view_booking(id):
+    booking = get_booking(id)
+    name = get_booking_owner(id)
+    return render_template("booking.html.jinja", booking=booking, name=name)
+
+@app.route("/booking/<id>/comments/add", methods=['POST'])
+@login_required
+def add_comments(id):
+    comment = request.form.get("comments")
+    edit_booking(id, "comments", comment)
+    return redirect(f"/booking/{id}")
+
+@app.route('/change-password')
+@login_required
+def change_password():
+    user = get_user(session.get("user"))
+    return render_template("change-password.html.jinja", user=user)
+
+@app.route("/change-password/success", methods=['POST'])
+@login_required
+def change_password_handler():
+    id = request.form.get("id")
+    old_password = request.form.get("old-password") # TODO: Check to see if old_password is correct
+    new_password = request.form.get("new-password")
+    edit_user(id, "password", new_password)
+    return redirect("/")
+
 @app.route('/user/new')
 @login_required
 def new_user_form():
@@ -96,7 +114,6 @@ def new_booking():
     dates = str(booking['date'])
     time = str(booking['time'])
     combined = dates + " " + time
-    flash('Test')
     create_booking(owner_id.user_id, combined)
     return {'response': "200"}
 

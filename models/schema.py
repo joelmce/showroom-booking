@@ -26,7 +26,8 @@ class Booking(Base):
     booking_id = Column(Integer, primary_key=True)
     owner_id = Column(Integer, ForeignKey('users.user_id'))
     date = Column(DateTime)
-    
+    comments = Column(String)
+
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()

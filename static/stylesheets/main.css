@@ -18,10 +18,8 @@ body {
 }
 
 header nav {
-  margin-top: 50px;
   padding: 10px 30px;
   border-radius: 10px;
-  border: 2px black solid;
 
   background-color: transparent;
   color: purple;
@@ -99,17 +97,41 @@ nav .user-controls {
 
 .book-button {
   margin-top: 10px;
-  padding: 20px;
+  padding: 10px;
+  background-color: yellow;
 }
 
 .calendar-wrapper {
-  display: flex;
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  flex-direction: column;
+}
+
+.calendar-wrapper .blurb {
+  margin: 0 10px;
+}
+
+.calendar-wrapper .blurb h1 {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.calendar-wrapper .blurb p {
+  color: gray;
+}
+
+.calendar-wrapper .blurb span {
+  color: purple;
+  font-weight: bold;
 }
 
 .booking-controls {
   float: right;
+}
+
+.active {
+  background-color: white;
+  color: black;
 }

@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.user-item {
+  margin: 20px 0;
+}
+
 .booking-owner {
   display: inline;
   margin: 0 10px;
@@ -35,6 +39,16 @@
   padding: 10px;
   background-color: crimson;
   color: white;
+  border: 0;
+  border-radius: 5px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.view-button {
+  padding: 10px;
+  background-color: lightblue;
+  color: black;
   border: 0;
   border-radius: 5px;
   text-decoration: none;

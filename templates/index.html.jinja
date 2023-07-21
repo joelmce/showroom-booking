@@ -44,8 +44,13 @@
         {% include 'includes/messages.html.jinja'%}
         {% block main %}
         <section class="calendar-wrapper">
+            <div class="blurb">
+                <h1>Book a slot in our showroom.</h1>
+                <p>The new way of showing things. Simply choose a date, then a time
+                then click <span>"Book Now"</span>.</p>
+            </div>
             <div id="calendar"></div>
-            <button id="book" class="book-button button button-secondary">Book</button>
+            {# <button id="book" class="book-button button button-secondary">Book</button> #}
         </section>
         
         {% endblock%}

@@ -26,6 +26,7 @@ const options = {
             <a class="time" id="morning">9:30am</a>
             <a class="time" id="afternoon">1:30pm</a>
         </div>
+        <button id="book" class="book-button button button-secondary">Book</button>
       `,
   },
 };
@@ -38,11 +39,15 @@ const one = document.getElementById("afternoon");
 const bookButton = document.getElementById("book");
 let selectedTime;
 
-nine.addEventListener("click", function () {
+nine.addEventListener("click", function (e) {
   selectedTime = nine.textContent;
+  nine.classList.toggle("active");
+  one.classList.remove("active");
 });
-one.addEventListener("click", function () {
+one.addEventListener("click", function (e) {
   selectedTime = one.textContent;
+  one.classList.toggle("active");
+  nine.classList.remove("active");
 });
 
 bookButton.addEventListener("click", function () {

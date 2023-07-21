@@ -8,14 +8,16 @@
 {% block main %}
 <main>
     <h1>Hello, {{ user.name }}</h1>
+    <a href="/change-password" class="button">Update password</a>
     <h3>Here are your bookings.</h3>
     <section class="user-bookings">
     <ul class="bookings">
         {% for booking in bookings %}
         <li class="booking">
-        <p>Reference: {{ booking.booking_id }} </p>
             {{ booking.date}}
+
         <div class="booking-controls">
+            <a class="view-button" href="/booking/{{booking.booking_id}}">View</a>
             <a class="delete-button" href="/booking/delete/{{booking.booking_id}}">Delete</a>
         </div>    
         </li>

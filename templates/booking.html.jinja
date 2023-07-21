@@ -1,0 +1,17 @@
+{% extends 'index.html.jinja' %}
+{% block css %}
+    <link rel="stylesheet" href="/static/stylesheets/admin.css">
+{% endblock %}
+
+{% block main %}
+<main>
+    <section class="manage-users">
+        <h1>Booking #{{ booking.booking_id }} with {{ name }}.</h1>
+        <form action="/booking/{{booking.booking_id}}/comments/add" method="POST">
+            <input type="text" name="comment"/>
+            <input type="submit" value="Add Comment"/>
+        </form>
+       
+    </section>
+</main>
+{% endblock %}
