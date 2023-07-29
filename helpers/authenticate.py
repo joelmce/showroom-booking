@@ -20,7 +20,7 @@ def hashpassword(p):
         An encrypted password
     """
     salt = bcrypt.gensalt()
-    password = bcrypt.hashpw(p.encode, salt)
+    password = bcrypt.hashpw(p.encode(), salt)
     return password
 
 def checkpassword(user, entered_password):

@@ -1,12 +1,10 @@
 from flask import Flask, render_template, session, request, flash, redirect, get_flashed_messages
 from helpers.user import get_all, get_user, remove_user, add_user, get_user_by_id, edit_user
 from helpers.booking import get_bookings_by_user, get_booking_owner, create_booking, get_all_bookings, remove_booking, get_booking, edit_booking
-from helpers.authenticate import login_required, checkpassword, hashpassword, login_user
-
-from helpers.emails import send_email
+from helpers.authenticate import login_required, login_user
 
 app = Flask(__name__)
-app.secret_key = "Magically"
+app.secret_key = "Magically" # TODO: Add to environment 
 
 @app.route("/")
 def index():
@@ -51,7 +49,7 @@ def admin():
     return render_template("admin.html.jinja", users=all_users, bookings=all_bookings)
 
 @app.route("/user/delete/<id>")
-@login_required
+@login_required()
 def delete_user(id):
     remove_user(id)
     return redirect("/admin")
